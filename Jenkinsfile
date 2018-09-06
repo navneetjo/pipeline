@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        MY_ID     = credentials('myid')
+        MY_ID     = credentials('jenkins-bitbucket-common-creds')
     }
 
     stages {
