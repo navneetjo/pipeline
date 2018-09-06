@@ -1,4 +1,3 @@
-def myname = input message: 'Enter a name'
 pipeline {
     agent any
 
@@ -13,7 +12,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                echo "name is ${myname}"
                 sh 'ls -lrth'
                 script {
                     env.UPDATE_NAME = input message: 'New Name is required',
