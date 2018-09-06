@@ -2,10 +2,6 @@ def myname
 pipeline {
     agent any
 
-    environment {
-        MY_ID     = credentials('jenkins-bitbucket-common-creds')
-    }
-
     stages {
         stage('Build') {
             steps {
@@ -17,7 +13,6 @@ pipeline {
             steps {
                 echo 'Testing..'
                 echo "name is ${myname}"
-                echo "ID is $MY_ID"
                 sh 'ls -lrth'
             }
         }
