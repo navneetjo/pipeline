@@ -1,4 +1,4 @@
-def myname
+def myname = input message: 'Enter a name'
 pipeline {
     agent any
 
@@ -9,13 +9,29 @@ pipeline {
             }
 
         }
+        
         stage('Test') {
             steps {
                 echo 'Testing..'
                 echo "name is ${myname}"
                 sh 'ls -lrth'
+                script {
+                    env.UPDATE_NAME = input message: 'New Name is required',
+                    parameters: [choice(name: 'can choose the below name :', choices: 'Rahul\nMohan', description: 'Choose "yes" if you want to deploy this build')]
+        }
             }
         }
+
+        stage('continue') {
+            when {
+              environment name: 'UPDATE_NAME', value: 'Rahul'
+            }
+            steps {
+                sh 'echo "aborting... name is ${env.UPDATE_NAME}"'
+            }
+        }
+
+
         stage('Deploy') {
             when {
               expression {
@@ -24,6 +40,8 @@ pipeline {
             }
             steps {
                 sh 'echo "successfull build"'
+                sh 'echo currentBuild.result'
+                sh 'printenv'
             }
         }
     }
