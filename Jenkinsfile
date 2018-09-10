@@ -51,6 +51,8 @@ pipeline {
                 echo "Password: ${params.PASSWORD}"
 
                 echo "file uploaded : ${params.FILE}"
+
+                echo "Greeting : ${param.Greeting}" 
             }
         }
 
