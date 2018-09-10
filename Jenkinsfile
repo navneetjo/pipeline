@@ -1,6 +1,46 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+
+        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+
+        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+
+        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+
+        file(name: "FILE", description: "Choose a file to upload")
+
+    }
+
+
+    stages {
+        stage('Parameter-outputs') {
+            steps {
+                echo "Hello ${params.PERSON}"
+
+                echo "Biography: ${params.BIOGRAPHY}"
+
+                echo "Toggle: ${params.TOGGLE}"
+
+                echo "Choice: ${params.CHOICE}"
+
+                echo "Password: ${params.PASSWORD}"
+
+                echo "file uploaded : ${params.FILE}"
+            }
+        }
+
+        stage('Example') {
+            steps {
+                echo "${params.Greeting} World!"
+            }
+        }
+    }
+
     stages {
         stage('Build') {
             steps {
@@ -16,8 +56,16 @@ pipeline {
                 script {
                     env.UPDATE_NAME = input message: 'New Name is required',
                     parameters: [choice(name: 'can choose the below name :', choices: 'Rahul\nMohan', description: 'Choose "Rahul" if you want to deploy this build')]
-        }
+                }
             }
+            steps {
+
+            withCredentials([usernameColonPassword(credentialsId: '', variable: 'test-user')]) {
+            }
+            sh 'echo "variable... name is $test-user"'
+
+          }
+
         }
 
         stage('continue') {
@@ -27,6 +75,15 @@ pipeline {
             steps {
                 sh 'echo "aborting... name is ${UPDATE_NAME}"'
             }
+
+            post {
+                always {
+                    sh 'alwas triggers'
+                }
+                failure {
+                    sh 'this pipeline is in failure state'
+                }
+    }
         }
 
 
