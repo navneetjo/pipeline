@@ -16,31 +16,6 @@ pipeline {
 
     }
 
-
-    stages {
-        stage('Parameter-outputs') {
-            steps {
-                echo "Hello ${params.PERSON}"
-
-                echo "Biography: ${params.BIOGRAPHY}"
-
-                echo "Toggle: ${params.TOGGLE}"
-
-                echo "Choice: ${params.CHOICE}"
-
-                echo "Password: ${params.PASSWORD}"
-
-                echo "file uploaded : ${params.FILE}"
-            }
-        }
-
-        stage('Example') {
-            steps {
-                echo "${params.Greeting} World!"
-            }
-        }
-    }
-
     stages {
         stage('Build') {
             steps {
@@ -67,6 +42,30 @@ pipeline {
           }
 
         }
+
+
+        stage('Parameter-outputs') {
+            steps {
+                echo "Hello ${params.PERSON}"
+
+                echo "Biography: ${params.BIOGRAPHY}"
+
+                echo "Toggle: ${params.TOGGLE}"
+
+                echo "Choice: ${params.CHOICE}"
+
+                echo "Password: ${params.PASSWORD}"
+
+                echo "file uploaded : ${params.FILE}"
+            }
+        }
+
+        stage('Example') {
+            steps {
+                echo "${params.Greeting} World!"
+            }
+        }
+
 
         stage('continue') {
             when {
