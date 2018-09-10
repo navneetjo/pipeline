@@ -14,6 +14,8 @@ pipeline {
 
         file(name: "FILE", description: "Choose a file to upload")
 
+        text(name: "Greeting", description: "Choose a name :")
+
     }
 
     stages {
@@ -54,7 +56,7 @@ pipeline {
 
         stage('Example') {
             steps {
-                echo "${params.Greeting} World!"
+                echo "${params.Greeting} Hello !"
             }
         }
 
@@ -69,10 +71,10 @@ pipeline {
 
             post {
                 always {
-                    sh 'alwas triggers'
+                    sh 'echo "always triggers"'
                 }
                 failure {
-                    sh 'this pipeline is in failure state'
+                    sh 'echo "this pipeline is in failure state"'
                 }
     }
         }
