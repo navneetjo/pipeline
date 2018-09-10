@@ -94,7 +94,6 @@ pipeline {
         }
 
 
-        stages {
         stage('Stage 1') {
             agent none
             steps {
@@ -117,6 +116,6 @@ pipeline {
                 echo "This is myparam: ${approvalMap['myparam']}"
             }
         }
-    }
+        
     }
 }
