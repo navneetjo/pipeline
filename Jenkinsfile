@@ -52,7 +52,6 @@ pipeline {
 
                 echo "file uploaded : ${params.FILE}"
 
-                echo "Greeting : ${param.Greeting}" 
             }
         }
 
