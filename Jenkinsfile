@@ -25,7 +25,7 @@ pipeline {
               environment name: 'UPDATE_NAME', value: 'Rahul'
             }
             steps {
-                sh 'echo "aborting... name is ${env.UPDATE_NAME}"'
+                sh 'echo "aborting... name is ${UPDATE_NAME}"'
             }
         }
 
