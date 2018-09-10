@@ -33,14 +33,6 @@ pipeline {
                     parameters: [choice(name: 'can choose the below name :', choices: 'Rahul\nMohan', description: 'Choose "Rahul" if you want to deploy this build')]
                 }
             }
-            steps {
-
-            withCredentials([usernameColonPassword(credentialsId: '', variable: 'test-user')]) {
-            }
-            sh 'echo "variable... name is $test-user"'
-
-          }
-
         }
 
 
