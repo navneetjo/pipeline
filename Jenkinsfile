@@ -15,7 +15,7 @@ pipeline {
                 sh 'ls -lrth'
                 script {
                     env.UPDATE_NAME = input message: 'New Name is required',
-                    parameters: [choice(name: 'can choose the below name :', choices: 'Rahul\nMohan', description: 'Choose "yes" if you want to deploy this build')]
+                    parameters: [choice(name: 'can choose the below name :', choices: 'Rahul\nMohan', description: 'Choose "Rahul" if you want to deploy this build')]
         }
             }
         }
@@ -38,7 +38,7 @@ pipeline {
             }
             steps {
                 sh 'echo "successfull build"'
-                sh 'echo currentBuild.result'
+                sh 'echo $  currentBuild.result'
                 sh 'printenv'
             }
         }
