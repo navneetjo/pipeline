@@ -14,7 +14,7 @@ pipeline {
 
         file(name: "FILE", description: "Choose a file to upload")
 
-        text(name: "Greeting", description: "Choose a name :")
+        text(name: "Greeting", defaultValue: '' description: "Choose a name :")
 
     }
 
